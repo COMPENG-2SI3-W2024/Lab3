@@ -18,10 +18,8 @@ class Player
 {
     private:
         GameMechs* gmRef;
-
-        // TARGET    
-        objPosList* myPos;  // Lab 1/2 - Linked List / Array List
-                            //  Discuss why Linked List performs better here
+           
+        objPosList* myPos;  
 
         char** boardRef;
         ItemBin* binRef;
