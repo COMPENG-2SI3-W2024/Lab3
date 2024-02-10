@@ -17,18 +17,15 @@ class cmdQueue;
 class Player
 {
     private:
-        GameMechs* gmRef;
-           
+        GameMechs* gmRef;           
         objPosList* myPos;  
-
         char** boardRef;
         ItemBin* binRef;
-
-        char ctrlKeys[4];
-
-        cmdQueue *myCmdQueue;
-
         int myScore;
+
+        // Lab 3 - Setting up Queue for Multi Player
+        char ctrlKeys[4];
+        cmdQueue *myCmdQueue;
 
         enum Direction {STOP, UP, DOWN, LEFT, RIGHT};
         enum Direction myDir;

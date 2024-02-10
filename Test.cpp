@@ -8,13 +8,20 @@
 #define COUNT 10
 #define LARGE_COUNT 20
 #define TOTAL_ASSERT_COUNT 176
+#define TOTAL_TEST_CASES 7
 
 #include <iostream>
 using namespace std;
 
+// ******************* //
+// Turn this true once you are ready to test populateRandomElements() and generateObjects()
+bool testSortReady = true;
+// ******************* //
+
 objPosStack *StackUnderTest;
 cmdQueue *QueueUnderTest;
 int successCount;
+int passCount;
 
 void createNewStack();
 void clearStack();
@@ -22,12 +29,11 @@ void createNewQueue();
 void clearQueue();
 objPos generateRandomPos();
 char generateRandomChar();
-void assert_equal(int, int);
-void assert_equal(char, char);
-void assert_equal(bool, bool);
+bool assert_equal(int, int);
+bool assert_equal(char, char);
+bool assert_equal(bool, bool);
 
-// Turn this true once you are ready to test populateRandomElements() and generateObjects()
-bool testSortReady = true;;
+
 
 
 
@@ -40,13 +46,16 @@ bool testSortReady = true;;
 
 void testConstructorGetSize() {
 	
+	bool result = true;
+
 	cout << "TEST: testConstructorGetSize" << endl;
 	createNewStack();
 	int expected = 0;
 	int actual = StackUnderTest->size();	
 
-	assert_equal(expected, actual);
+	result = result & assert_equal(expected, actual);
 	clearStack();
+	if(result) passCount++;
 }
 
 
@@ -56,6 +65,8 @@ void testConstructorGetSize() {
 // PUSH, POP, and TOP
 
 void testPushTenTop() {
+
+	bool result = true;
 
 	cout << "TEST: testPushTenTop" << endl;
 	objPos itemArray[COUNT];
@@ -73,20 +84,23 @@ void testPushTenTop() {
 		cout << "\tItem " << i << ": ";
 		expected.printObjPos();		
 		
-		assert_equal(expected.getX(), actual.getX());
-		assert_equal(expected.getY(), actual.getY());
-		assert_equal(expected.getNum(), actual.getNum());
-		assert_equal(expected.getPF(), actual.getPF());
-		assert_equal(expected.getSym(), actual.getSym());
+		result = result & assert_equal(expected.getX(), actual.getX());
+		result = result & assert_equal(expected.getY(), actual.getY());
+		result = result & assert_equal(expected.getNum(), actual.getNum());
+		result = result & assert_equal(expected.getPF(), actual.getPF());
+		result = result & assert_equal(expected.getSym(), actual.getSym());
 
 		cout<< "\tStack Size: " << i+1 << endl;
-		assert_equal(StackUnderTest->size(), i+1);
+		result = result & assert_equal(StackUnderTest->size(), i+1);
 	}
 	
 	clearStack();
+	if(result) passCount++;
 }
 
 void testPushTenPop() {
+
+	bool result = true;
 
 	cout << "TEST: testPushTenPop" << endl;
 	objPos itemArray[COUNT];
@@ -100,7 +114,7 @@ void testPushTenPop() {
 	}
 
 	cout << "\tStack Size before Pop: " << StackUnderTest->size() << endl;
-	assert_equal(StackUnderTest->size(), COUNT);
+	result = result & assert_equal(StackUnderTest->size(), COUNT);
 
 	for(int i = COUNT-1; i >= 0; i--)
 	{
@@ -110,17 +124,18 @@ void testPushTenPop() {
 		cout << "\tItem " << i << ": ";
 		expected.printObjPos();		
 		
-		assert_equal(expected.getX(), actual.getX());
-		assert_equal(expected.getY(), actual.getY());
-		assert_equal(expected.getNum(), actual.getNum());
-		assert_equal(expected.getPF(), actual.getPF());
-		assert_equal(expected.getSym(), actual.getSym());
+		result = result & assert_equal(expected.getX(), actual.getX());
+		result = result & assert_equal(expected.getY(), actual.getY());
+		result = result & assert_equal(expected.getNum(), actual.getNum());
+		result = result & assert_equal(expected.getPF(), actual.getPF());
+		result = result & assert_equal(expected.getSym(), actual.getSym());
 
 		cout<< "\tStack Size: " << i << endl;
-		assert_equal(StackUnderTest->size(), i);	
+		result = result & assert_equal(StackUnderTest->size(), i);	
 	}
 	
 	clearStack();
+	if(result) passCount++;
 }
 
 
@@ -129,6 +144,8 @@ void testPushTenPop() {
 // RANDOM GEN and SORT
 
 void testTwentyRandomGenerationAndSort() {
+
+	bool result = true;
 
 	cout << "TEST: testRandomGenerationAndSort" << endl;
 	bool expected, actual = true;
@@ -150,12 +167,13 @@ void testTwentyRandomGenerationAndSort() {
 		
 		expected = ((prev.getNum() / 10) <= (curr.getNum() / 10));
 		
-		assert_equal(expected, actual);		
+		result = result & assert_equal(expected, actual);		
 
 		prev = curr;
 	}
 	
 	clearStack();
+	if(result) passCount++;
 }
 
 ////////////////////////////////////
@@ -166,17 +184,22 @@ void testTwentyRandomGenerationAndSort() {
 
 void testQueueConstructorGetSize() {
 	
+	bool result = true;
+
 	cout << "TEST: testQueueConstructorGetSize" << endl;
 	createNewQueue();
 	int expected = 0;
 	int actual = QueueUnderTest->getSize();	
 
-	assert_equal(expected, actual);
+	result = result & assert_equal(expected, actual);
 	clearQueue();
+	if(result) passCount++;
 }
 
 void testEnqueueDequeueGetSizeTen() {
 	
+	bool result = true;
+
 	cout << "TEST: testEnqueueGetSize" << endl;
 	createNewQueue();
 	char itemArray[COUNT];
@@ -189,7 +212,7 @@ void testEnqueueDequeueGetSizeTen() {
 	}
 
 	cout << "\tQueue Size before Dequeue: " << QueueUnderTest->getSize() << endl;
-	assert_equal(QueueUnderTest->getSize(), COUNT);
+	result = result & assert_equal(QueueUnderTest->getSize(), COUNT);
 
 	for(int i = 0; i < COUNT; i++)
 	{
@@ -197,17 +220,20 @@ void testEnqueueDequeueGetSizeTen() {
 		actual = itemArray[i];
 		cout << "\tItem" << i << ": (" << expected << ", " << actual << ")" << endl;
 
-		assert_equal(expected, actual);
+		result = result & assert_equal(expected, actual);
 	}
 
 	cout << "\tQueue Size after Dequeue: " << QueueUnderTest->getSize() << endl;
-	assert_equal(QueueUnderTest->getSize(), 0);
+	result = result & assert_equal(QueueUnderTest->getSize(), 0);
 
 	clearQueue();
+	if(result) passCount++;
 }
 
 void testEnqueueDequeueGetSizeTwenty() {
 	
+	bool result = true;
+
 	cout << "TEST: testEnqueueGetSize" << endl;
 	createNewQueue();
 	char itemArray[LARGE_COUNT];
@@ -220,7 +246,7 @@ void testEnqueueDequeueGetSizeTwenty() {
 	}
 
 	cout << "\tQueue Size before Dequeue: " << QueueUnderTest->getSize() << endl;
-	assert_equal(QueueUnderTest->getSize(), LARGE_COUNT);
+	result = result & assert_equal(QueueUnderTest->getSize(), LARGE_COUNT);
 
 	for(int i = 0; i < LARGE_COUNT; i++)
 	{
@@ -228,13 +254,14 @@ void testEnqueueDequeueGetSizeTwenty() {
 		actual = itemArray[i];
 		cout << "\tItem" << i << ": (" << expected << ", " << actual << ")" << endl;
 
-		assert_equal(expected, actual);
+		result = result & assert_equal(expected, actual);
 	}
 
 	cout << "\tQueue Size after Dequeue: " << QueueUnderTest->getSize() << endl;
-	assert_equal(QueueUnderTest->getSize(), 0);
+	result = result & assert_equal(QueueUnderTest->getSize(), 0);
 	
 	clearQueue();
+	if(result) passCount++;
 }
 
 bool runAllTests(int argc, char const *argv[]) {
@@ -268,10 +295,12 @@ int main(int argc, char const *argv[]) {
   	
 	srand(time(NULL));
 	successCount = 0;
+	passCount = 0;
 	bool successCode = runAllTests(argc, argv);
 	if(successCode)	cout << endl << "Passed All Tests" << endl;
 	else			cout << "Failed Tests, Check Failure" << endl;	
 	cout << "Assertion Score: " << successCount << " / " << TOTAL_ASSERT_COUNT << endl;	
+	cout << "Test Case Score: " << passCount << " / " << TOTAL_TEST_CASES << endl;	
 
 	return successCode? EXIT_SUCCESS : EXIT_FAILURE;
 }
@@ -325,7 +354,7 @@ char generateRandomChar()
 }
 
 
-void assert_equal(int a, int b)
+bool assert_equal(int a, int b)
 {
 	bool result = (a == b);
 	if(result)	
@@ -334,10 +363,10 @@ void assert_equal(int a, int b)
 	{
 		cout << "\t\t[ASSERTION] Expected: " << a << ", but Actual: " << b << endl;		
 	}
-	//return result;
+	return result;
 }
 
-void assert_equal(char a, char b)
+bool assert_equal(char a, char b)
 {
 	bool result = (a == b);
 	if(result)	
@@ -346,10 +375,10 @@ void assert_equal(char a, char b)
 	{
 		cout << "\t\tExpected: " << a << ", but Actual: " << b << endl;		
 	}
-	//return result;
+	return result;
 }
 
-void assert_equal(bool a, bool b)
+bool assert_equal(bool a, bool b)
 {
 	bool result = (a == b);
 	if(result)	
@@ -361,5 +390,5 @@ void assert_equal(bool a, bool b)
 		else
 			cout << "\t\t[ASSERTION] Expected: FALSE, but Actual: TRUE" << endl;		
 	}
-	//return result;
+	return result;
 }
