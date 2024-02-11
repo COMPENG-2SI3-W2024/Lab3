@@ -4,7 +4,6 @@
 #include "Player.h"
 #include "ItemBin.h"
 
-#include <chrono>
 #include <iostream>
 
 
@@ -31,7 +30,6 @@ int main(int argc, char* argv[])
     //////////////////////////////
     MacUILib_init();                            // Initialilze MacUI Library
 
-    chrono::time_point<std::chrono::steady_clock> start, end;
     double totalTime = 0.0;    
 
     myGM = new GameMechs();                     // Create GM instance on the heap        
@@ -56,23 +54,16 @@ int main(int argc, char* argv[])
         if(iterCount % 10 == 0)
         {
             // II. RUN LOGIC 
-            start = std::chrono::steady_clock::now();  
             for(int i = 0; i < PLAYER_COUNT; i++)
                 player[i]->movePlayer();        
-            end = std::chrono::steady_clock::now();
                 
             // III. DRAW SCREEN  
-            myDrawer->Draw();    
-
-            std::chrono::duration<double, std::milli> elapsedTime = end - start;
-            totalTime += elapsedTime.count();              
-            
-            myDrawer->DrawAverageComputationTime(totalTime / iterCount);     
+            myDrawer->Draw();                
         }           
 
         // IV. LOOP DELAY
         myGM->applyDelay();
-        iterCount++; 
+        iterCount++;
     }
 
 
