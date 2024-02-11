@@ -66,9 +66,18 @@ void ItemBin::generateItem()
     // Step 1: Get Player Ref from GameMech for Player pos
     Player** plList = gmRef->getPlayerListRef();
     int playerCount = gmRef->getPlayerCount();
-    
-    int bitVec[gmRef->getBoardSizeX()][gmRef->getBoardSizeY()] = {0};
 
+     // to prevent stack overflow
+    int xsize = gmRef->getBoardSizeX();
+    int ysize = gmRef->getBoardSizeY();
+    int** bitVec = new int*[xsize];
+    for(int i = 0; i < xsize; i++)
+    {
+        bitVec[i] = new int[ysize];
+        for(int j = 0; j < ysize; j++)
+            bitVec[i][j] = 0;
+    }  
+    
     objPosList *playerPos;    
     int playerLength;
     objPos target;    
@@ -111,6 +120,10 @@ void ItemBin::generateItem()
     myDrawItem.setY(randCandidateY);
 
     drawItem();
+
+    for(int i = 0; i < xsize; i++)// Theta(m)
+        delete[] bitVec[i];// Theta(1)
+    delete[] bitVec;// Theta(1)
     
 }
 
