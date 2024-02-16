@@ -35,6 +35,12 @@ void objPosStack::generateObjects(int count)
 {
     // Generate and pushes individual objPos isntances with randomly generated Prefix, Number, and Symbol.
     // The total number of generated instances is capped by input variable **count**.
+    
+    // 1. Generate Prefix A-Z and a-z.  Alphabetic characters only.
+    // 2. Generate Number [0, 99]
+    // 3. Leave Symbol as *
+    // Push every randomly generately objPos into the Stack.
+
 }
 
 
@@ -46,6 +52,10 @@ int objPosStack::sortByTenScoreBS()
 
     // You can use the relevant insertion and removal methods from the objPosDLinkedList interface
     //  to complete the sorting operations.
+
+    // Recommendation - use set() and get() - Think about how
+
+    
 }
 
 
@@ -56,6 +66,7 @@ void objPosStack::populateRandomElements(int size)
     //  of the **number** field in objPos instances.
 
     // Implementation done.  You'd have to implement the following two private helper functions above.
+    srand(time(NULL));
     generateObjects(size);
     sortByTenScoreBS();
 }
@@ -71,13 +82,15 @@ void objPosStack::push(const objPos &thisPos) const
 objPos objPosStack::pop()
 {
     // Pop the top element of the Stack.
-    //  Think about which objPosDLinkedList method can realize this operation.
+    //  If the Stack is empty, return objPos(-99, 0, 0, 0, 0)
+    //  Think about which objPosDLinkedList methods can realize this operation.
 }
 
 objPos objPosStack::top()
 {
     // Return the top element of the Stack without removing it
-    //  Think about which objPosDLinkedList method can realize this operation.
+    //  If the Stack is empty, return objPos(-99, 0, 0, 0, 0)
+    //  Think about which objPosDLinkedList methods can realize this operation.
 }
 
 int objPosStack::size()

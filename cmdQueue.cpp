@@ -34,9 +34,8 @@ void cmdQueue::enqueue(char thisCmd)
 char cmdQueue::dequeue()
 {
     // Dequeue the oldest character command from the queue and return
-    //  Think about what underlying DLinkedList method can support this operation
-
     // If no more commands to dequeue, return NULL character ('\0')
+    //  Think about what underlying DLinkedList method can support this operation    
 }
 
 int cmdQueue::getSize()
