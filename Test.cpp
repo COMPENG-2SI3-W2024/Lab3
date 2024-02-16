@@ -15,7 +15,7 @@ using namespace std;
 
 // ******************* //
 // Turn this true once you are ready to test populateRandomElements() and generateObjects()
-bool testSortReady = true;
+bool testSortReady = false;
 // ******************* //
 
 objPosStack *StackUnderTest;
