@@ -45,7 +45,7 @@ void objPosStack::generateObjects(int count)
 
 
 // private helper function
-int objPosStack::sortByTenScoreBS()
+void objPosStack::sortByTenScoreBS()
 {
     // Use BUBBLE SORT to sort all the objPos instances in the Stack in ascending order using teh doigit of 10
     //  of the **number** field of objPos.
