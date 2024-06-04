@@ -44,7 +44,7 @@ void ScreenDrawer::Draw() const
     for(int i = 0; i < playerCount; i++)
         MacUILib_printf("Player%d Score: %d\n", i+1, playerRef[i]->getScore());
 
-    MacUILib_printf("Object: <%d, %d>, ID=%c%d\n", target.getX(), target.getY(), target.getPF(), target.getNum());    
+    //MacUILib_printf("Object: <%d, %d>, ID=%c%d\n", target.getX(), target.getY(), target.getPF(), target.getNum());    
 }
 
 void ScreenDrawer::DrawEndGame() const

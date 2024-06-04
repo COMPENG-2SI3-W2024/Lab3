@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
     // DECLARATION (LOCAL, on Stack)
     //////////////////////////////
 
-    #define PLAYER_COUNT 3
+    #define PLAYER_COUNT 2
 
     GameMechs *myGM;
     ScreenDrawer *myDrawer;
@@ -32,16 +32,14 @@ int main(int argc, char* argv[])
 
     double totalTime = 0.0;    
 
-    myGM = new GameMechs();                     // Create GM instance on the heap        
+    myGM = new GameMechs();                     // Create GM instance on the heap            
     myBin = new ItemBin(myGM);                  // Create the item bin on the heap
-    player[0] = new Player(3, 3, '@', myGM, myBin, "wsad");      // Create first Player on the heap
-    player[1] = new Player(12, 12, '&', myGM, myBin, "ikjl");      // Create second Player on the heap
-    player[2] = new Player(12, 3, '!', myGM, myBin, "gbvn");      // Create second Player on the heap
+    player[0] = new Player(3, 3, '@', myGM, myBin, "wsad");      // Create first Player on the heap    
+    player[1] = new Player(12, 12, '&', myGM, myBin, "ikjl");      // Create second Player on the heap        
     
+    myBin->generateItem();    
     myDrawer = new ScreenDrawer(myGM, myBin); // Create Screen Drawer Module on the heap
     
-    myBin->generateItem();
-
 
     //////////////////////////////
     // PROGRAM LOOP
@@ -49,8 +47,8 @@ int main(int argc, char* argv[])
     while(myGM->getExitFlag() == false)
     {
         // I. GET INPUT
-        myGM->processInput();
-       
+        myGM->processInput();        
+               
         if(iterCount % 10 == 0)
         {
             // II. RUN LOGIC 

@@ -74,8 +74,6 @@ int objPosStack::sortByTenScoreBS()
     // You can use the relevant insertion and removal methods from the objPosDLinkedList interface
     //  to complete the sorting operations.
 
-    // Recommendation - use set() and get()
-
     int passes = 0;
     int size = myList->getSize();
     bool notdone = false; 
@@ -90,7 +88,7 @@ int objPosStack::sortByTenScoreBS()
             objPos nextPos = myList->get(i + 1);
 
             // If ascending order in stack, then smaller elements move to tail
-            if((currPos.getNum()/10) < (nextPos.getNum()/10))            
+            if((currPos.getNum()/10) < (nextPos.getNum()/10))
             {
                 // SWAP!
                 myList->set(nextPos, i);
