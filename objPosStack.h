@@ -9,10 +9,10 @@ class objPos;
 class objPosStack  // use Composition
 {
     private:
-        objPosList* myList;
+        objPosList* myList;  // objPosDLinkedList
 
         void generateObjects(int count);
-        int sortByTenScoreBS();  
+        void sortByTenScoreBS();  
 
     public:
         objPosStack();
