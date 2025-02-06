@@ -165,7 +165,7 @@ void testTwentyRandomGenerationAndSort() {
 		cout << "\t";
 		curr.printObjPos();	
 		
-		expected = ((prev.getNum() / 10) <= (curr.getNum() / 10));
+		expected = ((prev.getNum() / 10) >= (curr.getNum() / 10));
 		
 		result = result & assert_equal(expected, actual);		
 

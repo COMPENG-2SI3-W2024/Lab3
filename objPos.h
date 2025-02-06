@@ -5,6 +5,10 @@
 //  If copied in 2SH4, it will CLEARLY show
 // This is only used in 2SI3
 
+// AND don't share with future cohorts
+//  2SI3 team will regularly change the objPos implementation
+// If copied from previous years, it will also CLEARLY show
+
 class objPos
 {
     private:

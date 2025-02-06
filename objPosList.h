@@ -4,7 +4,7 @@
 
 #include "objPos.h"
 
-class objPos;  // forward declaration
+class objPos;  // forward declaration to prevent circular dependencies
 
 class objPosList
 {

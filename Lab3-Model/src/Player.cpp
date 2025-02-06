@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "objPosArrayList.h"
-#include "objPosDLinkedList.h"
+#include "objPosSHLinkedList.h"
 
 #include <iostream>
 using namespace std;
@@ -9,7 +9,7 @@ Player::Player(int x, int y, char symbol, GameMechs* gm, ItemBin* bin, const cha
 {
     //myPos = new objPos(x, y, -1, 0, symbol);  // TARGET
     //myPos = new objPosArrayList();
-    myPos = new objPosDLinkedList();
+    myPos = new objPosSHLinkedList();
 
     // Lab 2 validation method
     //for(int i = 0; i < 10000; i++)

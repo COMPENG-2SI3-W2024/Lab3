@@ -1,30 +1,34 @@
 #ifndef CMDQUEUE_H
 #define CMDQUEUE_H
 
-#include "DLinkedList.h"
-
-// use template doubly linked list from lecture, make it type char
+// You must implement the array-based circular queue as discussed in class
+// You must NOT use any existing data structures such as Lists to design the queue.
 
 // each player object needs one cmd queue
 // place it in either GameMechs or Player class, 
 // so to allow simultaneous control
-
+#define DEFAULT_CAPACITY 100
 
 class cmdQueue
 {
     private:
-        DLinkedList<char> *myQueue;
+        char* queue;
+        int capacity;
+        int size;
+        int front;  // enqueue here
+        int end;    // dequeue here
 
     public:
         cmdQueue();
+        cmdQueue(int cap);
         ~cmdQueue();
 
         void enqueue(char thisCmd);
         char dequeue();
-        int getSize();
+        int getSize() const;
         void clearQueue();
 
-        void printMe();
+        void printMe() const;
 };
 
 #endif

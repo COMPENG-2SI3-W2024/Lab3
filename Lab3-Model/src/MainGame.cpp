@@ -34,23 +34,12 @@ int main(int argc, char* argv[])
 
     myGM = new GameMechs();                     // Create GM instance on the heap            
     myBin = new ItemBin(myGM);                  // Create the item bin on the heap
-<<<<<<< HEAD
     player[0] = new Player(3, 3, '@', myGM, myBin, "wsad");      // Create first Player on the heap    
     player[1] = new Player(12, 12, '&', myGM, myBin, "ikjl");      // Create second Player on the heap        
     
     myBin->generateItem();    
     myDrawer = new ScreenDrawer(myGM, myBin); // Create Screen Drawer Module on the heap
     
-=======
-    player[0] = new Player(3, 3, '@', myGM, myBin, "wsad");      // Create first Player on the heap
-    player[1] = new Player(12, 12, '&', myGM, myBin, "ikjl");      // Create second Player on the heap    
-    
-    myBin->generateItem();
-
-    myDrawer = new ScreenDrawer(myGM, myBin); // Create Screen Drawer Module on the heap
-        
-
->>>>>>> 8bbc28afdf8e09589e8470b935d699b72be9e7bd
 
     //////////////////////////////
     // PROGRAM LOOP

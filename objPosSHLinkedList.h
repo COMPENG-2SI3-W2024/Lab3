@@ -1,40 +1,36 @@
-#ifndef OBJPOSDLINKEDLIST_H
-#define OBJPOSDLINKEDLIST_H
+#ifndef OBJPOSHSLINKEDLIST_H
+#define OBJPOSHSLINKEDLIST_H
 
 #include "objPosList.h"
 #include "objPos.h"
 
 class objPos;
 
-class DNode
+class SNode  // singly list node
 {        
     public:
         objPos data;
-        DNode* next;
-        DNode* prev;
-        
-        DNode()
+        SNode* next;
+                
+        SNode()
         {
             data = objPos(0,0,0,0,0);
-            next = nullptr;
-            prev = nullptr;
+            next = nullptr;            
         }        
 };
 
 // Public inheritance - using ObjPosList interface
-class objPosDLinkedList : public objPosList
+class objPosSHLinkedList : public objPosList
 {
-    // Singly linked list with header and tail pointer
+    // Singly linked list with DUMMY HEADER
     private:
-        DNode* listHead;
-        DNode* listTail;
-        DNode* persistHead;
-        int listSize;        
-        
+        SNode* listHead;        
+        SNode* persistHead;
+        int listSize;     
 
     public:
-        objPosDLinkedList();
-        virtual ~objPosDLinkedList();  // polymorphic destructor
+        objPosSHLinkedList();
+        virtual ~objPosSHLinkedList();  // polymorphic destructor
 
         // Once inheriting interface (Pure Abstract Class), must provide concrete implementation
         // for all the interface functions.

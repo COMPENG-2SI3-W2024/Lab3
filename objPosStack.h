@@ -9,7 +9,7 @@ class objPos;
 class objPosStack  // use Composition
 {
     private:
-        objPosList* myList;  // objPosDLinkedList
+        objPosList* myList;  // objPosSHLinkedList
 
         void generateObjects(int count);
         void sortByTenScoreBS();  
